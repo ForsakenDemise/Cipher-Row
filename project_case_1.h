@@ -8,7 +8,6 @@ using namespace std;
 // Function Prototypes
 int getCity(string s); // Return integer value of the city using String param var.
 void calDistance();       // Calculate the distance between two cities.
-void calBreadth();        // Calculate the Breadth First Search of cities.
 void calShortest();       // Determine the Shortest path for the saleman to travel.
 void calLowest();         // Calculate the Lowest Cost Trip
 
@@ -41,23 +40,21 @@ int main()
     cout << " | || | | | | (_| | | | | (_| | | |___| | | | | | |_) | | | |  __/ "     << endl; 
     cout << "|___|_| |_|_|\\__,_|_| |_|\\__,_| |_____|_| |_| |_| .__/|_|_|  \\___| "  << endl; 
     cout << "                                                |_|                "     << endl;
-    cout << "*************************************"             << endl;
-    cout << "* Inland Empire Solar Sales Travel  *"             << endl;
-    cout << "*************************************"     << endl << endl;
-    cout << "Please select your option:"                << endl << endl;
-    cout << "1. Calculate Distance between two cities"          << endl;
-    cout << "2. Calculate Breadth First Search"                 << endl;
-    cout << "3. Calculate Shortest Path"                        << endl;
-    cout << "4. Calculate the lowest cost trips"        << endl << endl;
-    cout << "5. Exit Application."                      << endl << endl;
+    cout << "*************************************"           << endl;
+    cout << "* Inland Empire Solar Sales Travel  *"           << endl;
+    cout << "*************************************"           << endl << endl;
+    cout << "Please select your option:"                      << endl << endl;
+    cout << "1. Calculate the distance between two cities"    << endl;
+    cout << "2. Locate the shortest path between two cities"  << endl;
+    cout << "3. Calculate the lowest cost trips"              << endl << endl;
+    cout << "4. Exit Application."                            << endl << endl;
 
 
     // Menu Selection: Each selection is represented by an integer value.
     const int SELECT_DISTANCE = 1;
-    const int SELECT_BREADTH  = 2;
-    const int SELECT_SHORTEST = 3;
-    const int SELECT_LOWEST = 4;
-    const int SELECT_EXIT = 5;
+    const int SELECT_SHORTEST = 2;
+    const int SELECT_LOWEST = 3;
+    const int SELECT_EXIT = 4;
     
     // Prompt user for an integer input for the Menu Selection.
     cout << "Selection: ";
@@ -68,9 +65,6 @@ int main()
     // Start the function based on the user-input.
     if (userInput == SELECT_DISTANCE)
       calDistance();
-    
-    else if (userInput == SELECT_BREADTH)
-      calBreadth();
     
     else if (userInput == SELECT_SHORTEST)
       calShortest();
@@ -139,21 +133,14 @@ void calDistance()
   cout << "\nDistance: " << graph[startCity][endCity] << " miles." << "\t <--- Your Answer\n";
 }
 
-// This function will calculate the Breadth First Search
-void calBreadth()
-{
-  cout << "\n\n[ 2. Calculate Breadth First Search ]\n";
-}
-
 // This function will calculate the Shortest Path. 
 void calShortest()
 {
-  cout << "\n\n[ 3. Calculate Shortest Path ]\n";
+  cout << "\n\n[ 2. Calculate Shortest Path ]\n";
 }
 
 // This function will calculate the Lowest Cost Trips
 void calLowest()
 {
-  cout << "\n\n[ 4. Calculate the lowest cost trips ]\n";
+  cout << "\n\n[ 3. Calculate the lowest cost trips ]\n";
 }
-
