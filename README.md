@@ -1,19 +1,9 @@
 # Cipher-Row
-CASE I. DOCUMENTATION 
+CASE III. DOCUMENTATION
+ 
+Using C++, we created a program that encrypts and decrypts messages using the Vigenere Cipher. The programming approaches allows the user to choose their string text. Once it is chosen, the program then encrypts and decrypts the string text. The algorithm is integrated in the program by using a form of polyalphabetic cipher, which is just a form of substitution. It uses multiple substitution alphabets. 
 
-The program we created allows the user to determine:
-1. Calculate the distance between two cities,
-2. Locate the shortest path between two cities, 
-and lastly 3. Calculate the lowest cost trips.
+The application of course concepts include the encryption and decryption of the string text chosen by the user. Vigenere Cipher’s concept is to take a string text and use the Vigenere’s square with the keyword. With the help of the comments on the program, it was made to be understood for any user accessing the program. The concept itself is not something a beginner can take from this program, it is more for an intermediate user. Although a beginner might not understand the concept, with the aid of the comments they can indeed walk away with an encrypted and decrypted string text. 
 
-The programming approaches is as followed:
-it prompts the user to select one of the three options above.
-Once an option is chosen, the user is again prompted to choose the two cities.
-The program then starts the function based on the user's input. 
-Once the program has finished its executions, it returns back to the menu selection.
-Once it returns back to the menu selection, it allows the user to make another selection if needed.
-
-If selection 1 is chosen it uses the adjacency matrix to determine the distance between the two cities the user chooses.
-If selection 2 is chosen it uses the breadth first search to locate the shortest path between the two cities chosen.
 
 
