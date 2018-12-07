@@ -2,10 +2,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
 // Function Prototypes
-int returnCity(string s); // Return integer value of the city using String param var.
+int getCity(string s); // Return integer value of the city using String param var.
 void calDistance();       // Calculate the distance between two cities.
 void calBreadth();        // Calculate the Breadth First Search of cities.
 void calShortest();       // Determine the Shortest path for the saleman to travel.
@@ -93,7 +94,8 @@ int main()
 
 // The function will compare the user input to determine their city in integer.
 // This function requires a String city name and will return its integer.
-int returnCity(string userString)
+// Return an int value of 0 if no matches could be found.
+int getCity(string userString)
 {
   if (userString.compare("riverside") == 0)
     return RIVERSIDE;
@@ -111,23 +113,28 @@ int returnCity(string userString)
 }
 
 // This function will calculate the distance between the two input cities.
-// This feature is not a requirement for the Case 1 Project, but it is helpful
-// to validate if our matrix adjancency in the program is portraying accurate value.
+// While this feature is not a requirement for the Case 1 Project, it is helpful for
+// validating if our matrix adjancency in the program is portraying accurate value.
 void calDistance()
 {
-  string userInput;
-  int startCity;  // The city that the user will start from.
-  int endCity;    // The city that the user will exit to.
+  string userInput; // Variable for storing user keyboard input.
+  int startCity;    // The city that the user will start from.
+  int endCity;      // The city that the user will exit to.
 
-  cout << "\n\n[ 1. Calculate Distance between two cities ]\n";
+  list<string> cityList = {"Riverside", "Moreno Valley", "Perris", "Hemet"};
 
-  cout << "\nEnter the Starting city: ";
-  getline(cin, userInput);
-  startCity = returnCity(userInput);
+  cout << "\n\n[ 1. Calculate Distance between two cities ]\n\n";
+  cout << "Available Cities: [";
+  for (auto i = cityList.begin(); i != cityList.end(); i++) {cout << *i << ", ";}
+  cout << "]" << endl;
+
+  cout << "Enter the Starting city: ";
+  getline(cin, userInput);          // Prompt the user for a String input of city name.
+  startCity = getCity(userInput);   // Return an int-value of String represent.
 
   cout << "Enter the Ending city: ";
   getline(cin, userInput);
-  endCity = returnCity(userInput);
+  endCity = getCity(userInput);
 
   cout << "\nDistance: " << graph[startCity][endCity] << " miles." << "\t <--- Your Answer\n";
 }
