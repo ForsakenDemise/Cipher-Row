@@ -30,6 +30,12 @@ int main()
 {
   bool exitProgram = false;
 
+  // Menu Selection: Each selection is represented by an integer value.
+  const int SELECT_DISTANCE = 1;
+  const int SELECT_SHORTEST = 2;
+  const int SELECT_LOWEST = 3;
+  const int SELECT_EXIT = 4;
+
   // Continue running the program until the user choose "Exit Application".
   while (!exitProgram)
   {
@@ -40,27 +46,24 @@ int main()
     cout << " | || | | | | (_| | | | | (_| | | |___| | | | | | |_) | | | |  __/ "     << endl; 
     cout << "|___|_| |_|_|\\__,_|_| |_|\\__,_| |_____|_| |_| |_| .__/|_|_|  \\___| "  << endl; 
     cout << "                                                |_|                "     << endl;
-    cout << "*************************************"           << endl;
-    cout << "* Inland Empire Solar Sales Travel  *"           << endl;
-    cout << "*************************************"           << endl << endl;
-    cout << "Please select your option:"                      << endl << endl;
-    cout << "1. Calculate the distance between two cities"    << endl;
-    cout << "2. Locate the shortest path between two cities"  << endl;
-    cout << "3. Calculate the lowest cost trips"              << endl << endl;
-    cout << "4. Exit Application."                            << endl << endl;
+    cout << "╔═══════════════════════════════════╗"           << endl;
+    cout << "║ Inland Empire Solar Sales Travel  ║"           << endl;
+    cout << "╚═══════════════════════════════════╝"           << endl << endl;
+    cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓" << endl;
+    cout << "┃ 1️. Calculate the distance of two cities        ┃" << endl;
+    cout << "┃ 2️. Locate the shortest path of two cities      ┃"  << endl;
+    cout << "┃ 3. Calculate the lowest cost trips             ┃"  << endl;
+    cout << "┃                                                ┃"  << endl;
+    cout << "┃ 4. Exit Application                            ┃"  << endl;
+    cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"  << endl;
 
-
-    // Menu Selection: Each selection is represented by an integer value.
-    const int SELECT_DISTANCE = 1;
-    const int SELECT_SHORTEST = 2;
-    const int SELECT_LOWEST = 3;
-    const int SELECT_EXIT = 4;
-    
     // Prompt user for an integer input for the Menu Selection.
-    cout << "Selection: ";
+    cout << "Please enter your selection: ";
+
     int userInput;
     cin >> userInput;
     cin.ignore();     // Consume the white space from the keyboard buffer.
+ 
 
     // Start the function based on the user-input.
     if (userInput == SELECT_DISTANCE)
@@ -117,20 +120,33 @@ void calDistance()
 
   list<string> cityList = {"Riverside", "Moreno Valley", "Perris", "Hemet"};
 
-  cout << "\n\n[ 1. Calculate Distance between two cities ]\n\n";
-  cout << "Available Cities: [";
-  for (auto i = cityList.begin(); i != cityList.end(); i++) {cout << *i << ", ";}
-  cout << "]" << endl;
+  cout << endl << endl;
+  cout << "╔═════════════════════════════════════════════╗" << endl;
+  cout << "║  1. Calculate Distance Between Two Cities   ║" << endl;
+  cout << "╚═════════════════════════════════════════════╝" << endl << endl;
 
-  cout << "Enter the Starting city: ";
+  cout << "Available Cities:" << endl << endl;
+
+  for (auto i = cityList.begin(); i != cityList.end(); i++) 
+  {
+    cout << " 🏡️ " << *i << endl;
+  }
+
+  cout << endl << "🚖 Enter your Starting City: ";
   getline(cin, userInput);          // Prompt the user for a String input of city name.
   startCity = getCity(userInput);   // Return an int-value of String represent.
 
-  cout << "Enter the Ending city: ";
+  cout << "🚖 Enter your Destination City: ";
   getline(cin, userInput);
   endCity = getCity(userInput);
 
-  cout << "\nDistance: " << graph[startCity][endCity] << " miles." << "\t <--- Your Answer\n";
+  cout << "\n🛑 Distance: " << graph[startCity][endCity] << " Miles";
+
+
+  cout << endl << endl << endl;
+  cout << "╔═════════════════════════════════════════════╗" << endl;
+  cout << "║           Returning to Menu Screen          ║" << endl;
+  cout << "╚═════════════════════════════════════════════╝" << endl << endl;
 }
 
 // This function will calculate the Shortest Path. 
