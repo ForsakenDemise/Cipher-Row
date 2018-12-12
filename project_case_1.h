@@ -55,14 +55,14 @@ int main()
     cout << "╔═══════════════════════════════════╗"                                   << endl;
     cout << "║ Inland Empire Solar Sales Travel  ║"                                   << endl;
     cout << "╚═══════════════════════════════════╝"                                   << endl << endl;
-    cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓" << endl;
-    cout << "┃ 1. Determine the Variations of the Trip        ┃" << endl;
-    cout << "┃ 2. Calculate the Distance of Two Cities        ┃" << endl;
-    cout << "┃ 3️. Locate the Shortest Path                    ┃" << endl;
-    cout << "┃ 4. Locate the Lowest Cost Trips                ┃" << endl;
-    cout << "┃                                                ┃" << endl;
-    cout << "┃ 5. Exit Application                            ┃" << endl;
-    cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛" << endl << endl;
+     cout <<"╔════════════════════════════════════════════════╗" << endl;
+    cout << "║ 1. Determine the Variations of the Trip        ║" << endl;
+    cout << "║ 2. Calculate the Distance of Two Cities        ║" << endl;
+    cout << "║ 3️. Locate the Shortest Path                    ║" << endl;
+    cout << "║ 4. Locate the Lowest Cost Trips                ║" << endl;
+    cout << "║                                                ║" << endl;
+    cout << "║ 5. Exit Application                            ║" << endl;
+    cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 
 
     cout << "Please enter your selection 👉 ";     
@@ -141,16 +141,19 @@ void calVariations()
   cout << "║    1. Determine The Variations of The Trip     ║" << endl;
   cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 
-  cout << "Scenario: \n\nThe traveling saleman currently resides in Riverside and..." << endl;
-  cout << "must journey his way around different cities to sell his solar products..." << endl;
-  cout << "and then return back to his home after his business to finish the day. 💭\n\n\n";
-
-  cout << "Cities: \n\nThere are 3 different cities that he must visit: " << endl << endl;
-
-  for (auto i = cityList.begin(); i != cityList.end(); i++) 
-  {
-    cout << " 🏡️ " << *i << endl;
-  }
+  cout << "╔══════════════════════════════════════════════════════════════════════════════╗" << endl;
+  cout << "║  Scenario:                                                                   ║" << endl;
+  cout << "║                                                                              ║" << endl;
+  cout << "║  The traveling saleman currently resides in Riverside and must journey...    ║" << endl;
+  cout << "║  his way around different cities to sell his solar products...               ║" << endl;
+  cout << "║  finally then can he return back to his home in order to finish the day.     ║" << endl;
+  cout << "║                                                                              ║" << endl;
+  cout << "║  There are 3 different cities that he must visit:                            ║" << endl;
+  cout << "║                                                                              ║" << endl;
+  cout << "║  🏡️ Moreno Valley                                                            " << endl; 
+  cout << "║  🏡️ Perris                                                                   " << endl;
+  cout << "║  🏡️ Hemet                                                                    " << endl;
+  cout << "╚══════════════════════════════════════════════════════════════════════════════╝" << endl; 
 
   cout << "\n\nVariations: \n\nUsing computer algorithm, we can determine his trip variations below:" << endl;
 
