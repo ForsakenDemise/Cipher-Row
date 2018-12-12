@@ -8,9 +8,12 @@ using namespace std;
 
 // Function Prototypes
 int getCity(string s);     // Return integer value of the city using String param var.
+
+void calVariations();      // Determine the variations of the trip to the noted cities 
 void calDistance();        // Calculate the Distance of two cities.
 void calShortest();        // Determine the Shortest path for the saleman to travel.
 void calLowest();          // Calculate the Lowest Cost Trip
+
 
 // Cities: Each city is represented by a constant integer value.
 const int RIVERSIDE     = 0;
@@ -34,15 +37,15 @@ int main()
   int userInput;              // Store user input for the menu selection.
 
   // Menu Selection: Each selection is represented by an integer value.
-  const int SELECT_DISTANCE = 1;
-  const int SELECT_SHORTEST = 2;
-  const int SELECT_LOWEST = 3;
-  const int SELECT_EXIT = 4;
+  const int SELECT_VARIATIONS = 1;
+  const int SELECT_DISTANCE = 2;
+  const int SELECT_SHORTEST = 3;
+  const int SELECT_LOWEST = 4;
+  const int SELECT_EXIT = 5;
 
   // Continue running the program until the user selects "Exit Application".
   while (!exitProgram)
   {
-    // Print Menu Selection.
     cout << " ___       _                 _   _____                 _"                << endl;           
     cout << "|_ _|_ __ | | __ _ _ __   __| | | ____|_ __ ___  _ __ (_)_ __ ___"       << endl;  
     cout << " | || '_ \\| |/ _` | '_ \\ / _` | |  _| | '_ ` _ \\| '_ \\| | '__/ _ \\" << endl;  
@@ -53,15 +56,16 @@ int main()
     cout << "║ Inland Empire Solar Sales Travel  ║"                                   << endl;
     cout << "╚═══════════════════════════════════╝"                                   << endl << endl;
     cout << "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓" << endl;
-    cout << "┃ 1️. Calculate the distance of two cities        ┃" << endl;
-    cout << "┃ 2️. Locate the shortest path of two cities      ┃" << endl;
-    cout << "┃ 3. Calculate the lowest cost trips             ┃" << endl;
+    cout << "┃ 1. Determine the Variations of the Trip        ┃" << endl;
+    cout << "┃ 2. Calculate the Distance of Two Cities        ┃" << endl;
+    cout << "┃ 3️. Locate the Shortest Path                    ┃" << endl;
+    cout << "┃ 4. Locate the Lowest Cost Trips                ┃" << endl;
     cout << "┃                                                ┃" << endl;
-    cout << "┃ 4. Exit Application                            ┃" << endl;
+    cout << "┃ 5. Exit Application                            ┃" << endl;
     cout << "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛" << endl << endl;
 
 
-    cout << "Please enter your selection: ";     
+    cout << "Please enter your selection 👉 ";     
     cin >> userInput;  // Prompt user for an integer of the menu selection.
     cin.ignore();     // Consume the whitespace from the keyboard buffer.
  
@@ -69,6 +73,9 @@ int main()
     // Start the function based on the user-input.
     switch (userInput)
     {
+      case SELECT_VARIATIONS: calVariations();
+      break;
+
       case SELECT_DISTANCE: calDistance();
       break;
 
@@ -84,12 +91,14 @@ int main()
       cout << "╔════════════════════════════════════════════════╗" << endl;
       cout << "║         Program has successfully closed        ║" << endl;
       cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+      break;
 
       default:
       cout << endl << endl;
       cout << "╔════════════════════════════════════════════════╗" << endl;
       cout << "║     Invalid Selection. Please try again ❗      ║" << endl;
       cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+      break;
     }
 
     // Create empty lines for the next menu selection appearance.
@@ -121,10 +130,37 @@ int getCity(string userString)
   return 0;
 }
 
+/* This function will determine the variations of the trip to the noted cities  
+ * that the traveling saleman must take to market the solar products. */
+void calVariations()
+{
+  list<string> cityList = {"Moreno Valley", "Perris", "Hemet"};
 
-// This function will calculate the distance between the two input cities.
-// While this feature is not a requirement for the Case 1 Project, it is helpful for
-// validating if our matrix adjancency in the program is portraying accurate value.
+  cout << endl << endl << endl;
+  cout << "╔════════════════════════════════════════════════╗" << endl;
+  cout << "║    1. Determine The Variations of The Trip     ║" << endl;
+  cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+
+  cout << "Scenario: \n\nThe traveling saleman currently resides in Riverside and..." << endl;
+  cout << "must journey his way around different cities to sell his solar products..." << endl;
+  cout << "and then return back to his home after his business to finish the day. 💭\n\n\n";
+
+  cout << "Cities: \n\nThere are 3 different cities that he must visit: " << endl << endl;
+
+  for (auto i = cityList.begin(); i != cityList.end(); i++) 
+  {
+    cout << " 🏡️ " << *i << endl;
+  }
+
+  cout << "\n\nVariations: \n\nUsing computer algorithm, we can determine his trip variations below:" << endl;
+
+} // end of calVariations()
+
+
+
+/* This function will calculate the distance between the two input cities.
+ * While this feature is not a requirement for the Case 1 Project, it is helpful for
+ * validating if our matrix adjancency in the program is portraying accurate values. */
 void calDistance()
 {
   string userInput; // Variable for storing user keyboard input.
@@ -133,9 +169,9 @@ void calDistance()
 
   list<string> cityList = {"Riverside", "Moreno Valley", "Perris", "Hemet"};
 
-  cout << endl << endl;
+  cout << endl << endl << endl;
   cout << "╔════════════════════════════════════════════════╗" << endl;
-  cout << "║    1. Calculate Distance Between Two Cities    ║" << endl;
+  cout << "║    2. Calculate Distance Between Two Cities    ║" << endl;
   cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 
   cout << "Available Cities:" << endl << endl;
@@ -155,18 +191,24 @@ void calDistance()
 
   cout << "\n🛑 Distance: " << graph[startCity][endCity] << " Miles";
 
-
   cout << endl << endl << endl;
   cout << "╔════════════════════════════════════════════════╗" << endl;
   cout << "║            Returning to Menu Screen            ║" << endl;
   cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 }
 
+
+
 // This function will calculate the Shortest Path. 
 void calShortest()
 {
-  cout << "\n\n[ 2. Calculate Shortest Path ]\n";
+  cout << endl << endl;
+  cout << "╔════════════════════════════════════════════════╗" << endl;
+  cout << "║          3. Located the Shortest Path          ║" << endl;
+  cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 }
+
+
 
 // This function will calculate the Lowest Cost Trips
 void calLowest()
