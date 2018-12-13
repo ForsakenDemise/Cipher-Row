@@ -263,24 +263,38 @@ int tsp(int graph[][V], int source)
     // The value of i should be in a sequence of 0 - 1 - 2 during the looping process.
     for (int i = 0; i < cities.size(); i++) 
     { 
-      // We can use the value of K which contains the source as the starting location.
-      // We can also use the value of cities[i] as the destination; with two values, we can obtain the path-weight.
-      // i.e First iteration (when i is 0):  graph[k][cities[i]] = graph[0][1];  
-      // i.e Second iteration (when i is 1): graph[k][cities[i]] = graph[1][2]
-      // i.e Third iteration (when i is 2):  graph[k][cities[i]] = graph[2][]
+      // We can use the K-value and cities[i] value in order to find the path weight:
+      // i.e First iteration  (when i is 0):  graph[k][cities[i]] = graph[0][cities[0]] = graph[0][1];  
+      // i.e Second iteration (when i is 1):  graph[k][cities[i]] = graph[1][cities[1]] = graph[1][2];
+      // i.e Third iteration  (when i is 2):  graph[k][cities[i]] = graph[2][cities[2]] = graph[2][3];
+
+      // Add the sum of the two coordinates throughout each iteration: 
+      // i.e First  Iteration:  graph[0][1] = 22; current_pathweight = 22;
+      // i.e Second Iteration:  graph[1][2] = 20; current_pathweight = 42;
+      // i.e Third  Iteration:  graph[2][3] = 32; current_pathweight = 74;
       current_pathweight += graph[k][cities[i]]; 
 
-      // The value of 'K' is now the value of the next element of the vertex cities.
-      // i.e First iteration: cities[i] = 1, so k = 1.
-      // i.e Second iteration: cities[1] = 2, so k = 2.
-
+      // The value of 'K' is now the value of the next element of the vertex cities:
+      // i.e First  iteration:  cities[0] = 1, so k = 1.
+      // i.e Second iteration:  cities[1] = 2, so k = 2.
+      // i.e Third  iteration:  cities[2] = 3, so k = 3. <-- K-value ends here.
       k = cities[i]; 
-    } 
 
+    } // close for-loop
 
+    // Sum up the last remaining = graph[3][0] = 33; current_weight = 74 + 33 = 107
     current_pathweight += graph[k][source]; 
 
-    // update minimum 
+
+    // Example Graph:
+    //    0  1  2  3
+    // 0           x  <-- Last   Iteration: graph[3][0];
+    // 1  x           <-- First  Iteration: graph[0][1];
+    // 2     x        <-- Second Iteration: graph[1][2];
+    // 3        x     <-- Third  Iteration: graph[2][3];
+
+
+    // Update the minimum path
     min_path = min(min_path, current_pathweight); 
         
   } while (next_permutation(cities.begin(), cities.end())); 
