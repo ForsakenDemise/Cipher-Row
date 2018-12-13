@@ -8,12 +8,12 @@
 using namespace std;
 
 // Function Prototypes
-int getCity(string s);     // Return integer value of the city using String param var.
-int tsp(int graph[][V], int s);
-void calVariations();      // Determine the variations of the trip to the noted cities 
-void calDistance();        // Calculate the Distance of two cities.
-void calShortest();        // Determine the Shortest path for the saleman to travel.
-void calLowest();          // Calculate the Lowest Cost Trip
+int getCity(string s);           // Return integer value of the city using String param var.
+int tsp(int graph[][V], int s);  // Traveling Saleman Algorithm for Option 1.
+void calVariations();            // Determine the variations of the trip to the noted cities 
+void calDistance();              // Calculate the Distance of two cities.
+void calShortest();              // Determine the Shortest path for the saleman to travel.
+void calLowest();                // Calculate the Lowest Cost Trip
 
 
 // Cities: Each city is represented by a constant integer value.
@@ -25,10 +25,10 @@ const int HEMET         = 3;
 
 // Multidimension-Array to represent the matrix of cities.
 // The cities are arranged in: Riverside, Moreno Valley, Perris, and Hemet; cols and rows.
-const int graph[4][4] =  {{0, 22, 26, 33},
-                          {22, 0, 20, 29},
-                          {26, 20, 0, 32},
-                          {33, 29, 32, 0}};
+int graph[4][4] =  {{0, 22, 26, 33},
+                    {22, 0, 20, 29},
+                    {26, 20, 0, 32},
+                    {33, 29, 32, 0}};
 
 
 // Main Function: The application will begin here. 
@@ -36,6 +36,8 @@ int main()
 {
   bool exitProgram = false;   // Determine the state of the program.
   int userInput;              // Store user input for the menu selection.
+
+  tsp(graph, 0);
 
   // Menu Selection: Each selection is represented by an integer value.
   const int SELECT_VARIATIONS = 1;
@@ -146,24 +148,24 @@ void calVariations()
   cout << "║  Scenario:                                                                   ║" << endl;
   cout << "║                                                                              ║" << endl;
   cout << "║  The traveling saleman currently resides in Riverside and must journey...    ║" << endl;
-  cout << "║  his way around different cities to sell his solar products...               ║" << endl;
-  cout << "║  finally can he then return back to his home in order to finish the day.     ║" << endl;
+  cout << "║  his way around different cities in order to sell his solar products...      ║" << endl;
+  cout << "║  before finally can he then return back to his home and finish the day.      ║" << endl;
   cout << "║                                                                              ║" << endl;
   cout << "║  There are 3 different cities that he must visit:                            ║" << endl;
   cout << "║                                                                              ║" << endl;
   cout << "║  🏡️ Moreno Valley                                                            "  << endl; 
   cout << "║  🏡️ Perris                                                                   "  << endl;
   cout << "║  🏡️ Hemet                                                                    "  << endl;
-  cout << "╚══════════════════════════════════════════════════════════════════════════════╝" << endl; 
+  cout << "╚══════════════════════════════════════════════════════════════════════════════╝" << endl << endl << endl; 
 
-  cout << "\n\nVariations: Here are possible variations that the saleman could travel\n\n";
+  cout << "Variations: \n\nHere are possible variations that the saleman could travel.\n\n";
 
-  cout << "1. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley ➡ 🔴 Riverside" << endl; //
-  cout << "2. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet         ➡ 🔴️ Riverside" << endl; //
-  cout << "3. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris        ➡ 🔴 Riverside" << endl; //
-  cout << "4. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley ➡ 🔴 Riverside" << endl; //
-  cout << "5. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🏡️ Perris        ➡ 🔴 Riverside" << endl; //
-  cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet         ➡ 🔴 Riverside" << endl; //       
+  cout << "1. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley  ➡ 🔴 Riverside" << endl; 
+  cout << "2. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🔴️ Riverside" << endl; 
+  cout << "3. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🔴 Riverside" << endl; 
+  cout << "4. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley  ➡ 🔴 Riverside" << endl; 
+  cout << "5. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🔴 Riverside" << endl; 
+  cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🔴 Riverside" << endl;        
 
 } // end of calVariations()
 
@@ -228,34 +230,60 @@ void calLowest()
 }
 
 
-// implementation of traveling Salesman Problem 
-int tsp(int graph[][V], int s) 
-{ 
-    // store all vertex apart from source vertex 
-    vector<int> vertex; 
-    for (int i = 0; i < V; i++) 
-        if (i != s) 
-            vertex.push_back(i); 
-  
-    // store minimum weight Hamiltonian Cycle. 
-    int min_path = INT_MAX; 
-    do { 
-  
-        // store current Path weight(cost) 
-        int current_pathweight = 0; 
-          
-        // compute current path weight 
-        int k = s; 
-        for (int i = 0; i < vertex.size(); i++) { 
-            current_pathweight += graph[k][vertex[i]]; 
-            k = vertex[i]; 
-        } 
-        current_pathweight += graph[k][s]; 
-  
-        // update minimum 
-        min_path = min(min_path, current_pathweight); 
-         
-    } while (next_permutation(vertex.begin(), vertex.end())); 
-  
-    return min_path; 
-} 
+/**
+/* This function will help solve the Traveling Saleman problem which Option 1 is based on.
+/* The function requires a multidemnsional array of graph and a starting point(source) integer... 
+/* and will then return the (shortest path) as the solution.
+ */
+int tsp(int graph[][V], int source) 
+{
+
+  vector<int> cities;      // This vector will store all vertices apart from the source vertex.
+  int min_path = INT_MAX;  // Store minimum weight Hamiltonian Cycle. 
+
+
+  // Step 1: Add all the non-source variable value to the vertex structure.
+  // Run a loop to determine if the counter variable has the same integer value as the source variable.
+  // If it doesn't, add it to the vertex vector; since macro 'V' is 4, only 3 elements should be added.
+  // ie. If the source is 0, the vertex will contain {1, 2, 3}, if source = 1 then {0, 2, 3}, and so on.
+  for (int i = 0; i < V; i++) 
+  {
+      if (i != source) 
+       cities.push_back(i);  
+  }
+
+
+  // Step 2. Compute the current path weight 
+  do 
+  { 
+    int current_pathweight = 0; // Store the weight of the current path; its cost
+    int k = source;             // k value contain the source location
+
+    // The size of the loop should be the value of (macro 'V' - 1); in this case, 3.
+    // The value of i should be in a sequence of 0 - 1 - 2 during the looping process.
+    for (int i = 0; i < cities.size(); i++) 
+    { 
+      // We can use the value of K which contains the source as the starting location.
+      // We can also use the value of cities[i] as the destination; with two values, we can obtain the path-weight.
+      // i.e First iteration (when i is 0):  graph[k][cities[i]] = graph[0][1];  
+      // i.e Second iteration (when i is 1): graph[k][cities[i]] = graph[1][2]
+      // i.e Third iteration (when i is 2):  graph[k][cities[i]] = graph[2][]
+      current_pathweight += graph[k][cities[i]]; 
+
+      // The value of 'K' is now the value of the next element of the vertex cities.
+      // i.e First iteration: cities[i] = 1, so k = 1.
+      // i.e Second iteration: cities[1] = 2, so k = 2.
+
+      k = cities[i]; 
+    } 
+
+
+    current_pathweight += graph[k][source]; 
+
+    // update minimum 
+    min_path = min(min_path, current_pathweight); 
+        
+  } while (next_permutation(cities.begin(), cities.end())); 
+
+  return min_path; 
+}
