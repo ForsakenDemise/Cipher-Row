@@ -146,7 +146,7 @@ void calVariations()
   cout << "║                                                                              ║" << endl;
   cout << "║  The traveling saleman currently resides in Riverside and must journey...    ║" << endl;
   cout << "║  his way around different cities to sell his solar products...               ║" << endl;
-  cout << "║  finally then can he return back to his home in order to finish the day.     ║" << endl;
+  cout << "║  finally can he then return back to his home in order to finish the day.     ║" << endl;
   cout << "║                                                                              ║" << endl;
   cout << "║  There are 3 different cities that he must visit:                            ║" << endl;
   cout << "║                                                                              ║" << endl;
@@ -155,7 +155,14 @@ void calVariations()
   cout << "║  🏡️ Hemet                                                                    " << endl;
   cout << "╚══════════════════════════════════════════════════════════════════════════════╝" << endl; 
 
-  cout << "\n\nVariations: \n\nUsing computer algorithm, we can determine his trip variations below:" << endl;
+  cout << "\n\nVariations: Here are possible variations that the saleman could travel\n\n";
+
+  cout << "1. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley ➡ 🔴 Riverside" << endl;
+  cout << "2. 🔵 Riverside  ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet         ➡ 🔴️ Riverside" << endl; 
+  cout << "3. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris        ➡ 🔴 Riverside" << endl;
+  cout << "4. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley ➡ 🔴 Riverside" << endl;
+  cout << "5. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🏡️ Perris        ➡ 🔴 Riverside" << endl;
+  cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet         ➡ 🔴 Riverside" << endl;          
 
 } // end of calVariations()
 
