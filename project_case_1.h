@@ -9,6 +9,7 @@ using namespace std;
 
 // Function Prototypes
 int getCity(string s);           // Return integer value of the city using String param var.
+string getPathName(int k, int i);    // Return a String pathname after providing 2 int values.
 int tsp(int graph[][V], int s);  // Traveling Saleman Algorithm for Option 1.
 void calVariations();            // Determine the variations of the trip to the noted cities 
 void calDistance();              // Calculate the Distance of two cities.
@@ -165,7 +166,16 @@ void calVariations()
   cout << "3. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🔴 Riverside" << endl; 
   cout << "4. 🔵 Riverside  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🏡️ Moreno Valley  ➡ 🔴 Riverside" << endl; 
   cout << "5. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🔴 Riverside" << endl; 
-  cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🔴 Riverside" << endl;        
+  cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🔴 Riverside" << endl;   
+
+  cout << "\n\nQuestion:\n\nBut which route would be the shortest for the traveling saleman to travel ❓" << endl;
+
+  cout << endl << endl << endl;
+  cout << "╔════════════════════════════════════════════════╗" << endl;
+  cout << "║    Calculating For The Most Shortest Route     ║" << endl;
+  cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+  cout << tsp(graph, RIVERSIDE);
+  cout << " miles." << endl;
 
 } // end of calVariations()
 
@@ -229,6 +239,53 @@ void calLowest()
   cout << "\n\n[ 3. Calculate the lowest cost trips ]\n";
 }
 
+// This function will return a string pathname to the caller.
+string getPathName(int k, int i)
+{
+  // Starting Point = Riverside
+  if (k == RIVERSIDE && i == RIVERSIDE)
+    return "Riverside -> Riverside";
+  else if (k == RIVERSIDE && i == MORENO_VALLEY)
+    return "Riverside -> Moreno Valley";
+  else if (k == RIVERSIDE && i == PERRIS)
+    return "Riverside -> Perris";
+  else if (k == RIVERSIDE && i == HEMET)
+    return "Riverside -> Hemet";    
+
+
+ // Starting Point = Moreno Valley
+  if (k == MORENO_VALLEY && i == MORENO_VALLEY)
+    return "Moreno Valley -> Moreno Valley";
+  else if (k == MORENO_VALLEY && i == RIVERSIDE)
+    return "Moreno Valley -> Riverside";
+  else if (k == MORENO_VALLEY && i == PERRIS)
+    return "Moreno Valley -> Perris";
+  else if (k == MORENO_VALLEY && i == HEMET)
+    return "Moreno Valley -> Hemet";  
+
+
+ // Starting Point = Perris
+  if (k == PERRIS && i == PERRIS)
+    return "Perris -> Perris";
+  else if (k == PERRIS && i == MORENO_VALLEY)
+    return "Perris -> Moreno Valley";
+  else if (k == PERRIS && i == RIVERSIDE)
+    return "Perris -> Riverside";
+  else if (k == PERRIS && i == HEMET)
+    return "Perris -> Hemet";  
+
+
+ // Starting Point = Hemet
+  if (k == HEMET && i == HEMET)
+    return "Hemet -> Hemet";
+  else if (k == HEMET && i == MORENO_VALLEY)
+    return "Hemet -> Moreno Valley";
+  else if (k == HEMET && i == PERRIS)
+    return "Hemet -> Perris";
+  else if (k == HEMET && i == RIVERSIDE)
+    return "Hemet -> Riverside";              
+}
+
 
 /**
 /* This function will help solve the Traveling Saleman problem which Option 1 is based on.
@@ -282,21 +339,28 @@ int tsp(int graph[][V], int source)
 
     } // close for-loop
 
-    // Sum up the last remaining = graph[3][0] = 33; current_weight = 74 + 33 = 107
+    // Sum up the last remaining = graph[3][0] = 33; current_weight = 74 + 33 = 107 <-- Should be our weight.
     current_pathweight += graph[k][source]; 
 
 
     // Example Graph:
     //    0  1  2  3
-    // 0           x  <-- Last   Iteration: graph[3][0];
-    // 1  x           <-- First  Iteration: graph[0][1];
+    // 0           x  <-- Last   Iteration: graph[3][0];   Returning home  to    Riverside(0)
+    // 1  x           <-- First  Iteration: graph[0][1];   Starting  home  from  Riverside(0)
     // 2     x        <-- Second Iteration: graph[1][2];
     // 3        x     <-- Third  Iteration: graph[2][3];
 
 
-    // Update the minimum path
+    // 3. Update and determine the path with minimum cost
+    //
+    // In order to determine the minimum path, the C++ std::min is utilized by..
+    // passing both current pathweight of the iteration and the previous recorded min_path.
+    // Whichever value is returned by the min function will be the lowest min_path of the white-loop.
     min_path = min(min_path, current_pathweight); 
         
+
+  // This do-while loop is operated by the std::next_permutation, 
+  // using the beginning iterator and the last iterator of the vertex as the length.      
   } while (next_permutation(cities.begin(), cities.end())); 
 
   return min_path; 
