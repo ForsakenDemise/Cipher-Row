@@ -1,4 +1,16 @@
 // Project Case 1: Inland Empire Solar Sales Travel
+//
+// This program will help the Solar Saleman locate his fastest route to sale his solar products.
+// There are currently two options from within the main menu, "1. Determine the Shortest Routes"
+// and "2. Calculate the Distance of Two Cities".
+// 
+// With Option 1, you will be able to simulate as the travel saleman and locate the various routes
+// that should be taken in order to promote your products. At the end of the scenario, a list of 
+// all the routes will be available for you to choose. 
+//
+// With Option 2, you will be able to locate the distance between two cities, utilizing the matrix.
+
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -41,8 +53,7 @@ int main()
   const int SELECT_VARIATIONS = 1;
   const int SELECT_DISTANCE = 2;
   const int SELECT_SHORTEST = 3;
-  const int SELECT_LOWEST = 4;
-  const int SELECT_EXIT = 5;
+  const int SELECT_EXIT = 4;
 
   // Continue running the program until the user selects "Exit Application".
   while (!exitProgram)
@@ -57,12 +68,10 @@ int main()
     cout << "║ Inland Empire Solar Sales Travel  ║"                                   << endl;
     cout << "╚═══════════════════════════════════╝"                                   << endl << endl;
      cout <<"╔════════════════════════════════════════════════╗" << endl;
-    cout << "║ 1. Determine the Variations of the Trip        ║" << endl;
+    cout << "║ 1. Determine the Shortest Route                ║" << endl;
     cout << "║ 2. Calculate the Distance of Two Cities        ║" << endl;
-    cout << "║ 3️. Locate the Shortest Path                    ║" << endl;
-    cout << "║ 4. Locate the Lowest Cost Trips                ║" << endl;
     cout << "║                                                ║" << endl;
-    cout << "║ 5. Exit Application                            ║" << endl;
+    cout << "║ 3. Exit Application                            ║" << endl;
     cout << "╚════════════════════════════════════════════════╝" << endl << endl;
 
 
@@ -81,9 +90,6 @@ int main()
       break;
 
       case SELECT_SHORTEST: calShortest();
-      break;
-
-      case SELECT_LOWEST: calLowest();
       break;
 
       case SELECT_EXIT:
@@ -163,15 +169,28 @@ void calVariations()
   cout << "5. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Hemet          ➡ 🏡️ Perris         ➡ 🔴 Riverside" << endl; 
   cout << "6. 🔵 Riverside  ➡ 🏡️ Moreno Valley  ➡ 🏡️ Perris         ➡ 🏡️ Hemet          ➡ 🔴 Riverside" << endl;   
 
-  cout << "\n\nQuestion:\n\nBut which route would be the shortest for the traveling saleman to travel ❓" << endl;
+
+  cout << endl << endl << endl;
+  cout << "╔════════════════════════════════════════════════╗" << endl;
+  cout << "║  Question: Which route would be the fastest?   ║" << endl;
+  cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+  cout << "Although the traveling saleman may be able to choose any routes..\n";
+  cout << "What would be the fastest route that he could travel from and back ❓\n\n";
+
 
   cout << endl << endl << endl;
   cout << "╔════════════════════════════════════════════════╗" << endl;
   cout << "║    Calculating For The Most Shortest Route     ║" << endl;
   cout << "╚════════════════════════════════════════════════╝" << endl << endl;
-  cout << travelSim(graph, RIVERSIDE);
-  cout << " miles." << endl;
+  travelSim(graph, RIVERSIDE);
 
+  cout << "\n⚡ Note: The route with the smallest miles is determined as the shortest route ❗" << endl;
+
+  cout << endl << endl << endl;
+  cout << "╔════════════════════════════════════════════════╗" << endl;
+  cout << "║            Returning to Menu Screen            ║" << endl;
+  cout << "╚════════════════════════════════════════════════╝" << endl << endl;
+ 
 } // end of calVariations()
 
 
@@ -239,46 +258,46 @@ string getPathName(int k, int i)
 {
   // Starting Point = Riverside
   if (k == RIVERSIDE && i == RIVERSIDE)
-    return " Riverside: Riverside: ";
+    return " Riverside-Riverside: ";
   else if (k == RIVERSIDE && i == MORENO_VALLEY)
-    return "Riverside: Moreno Valley: ";
+    return " Riverside-Moreno Valley: ";
   else if (k == RIVERSIDE && i == PERRIS)
-    return " Riverside: Perris: ";
+    return " Riverside-Perris: ";
   else if (k == RIVERSIDE && i == HEMET)
-    return " Riverside: Hemet: ";    
+    return " Riverside-Hemet: ";    
 
 
  // Starting Point = Moreno Valley
   if (k == MORENO_VALLEY && i == MORENO_VALLEY)
-    return " Moreno Valley: Moreno Valley: ";
+    return " Moreno Valley-Moreno Valley: ";
   else if (k == MORENO_VALLEY && i == RIVERSIDE)
-    return " Moreno Valley: Riverside: ";
+    return " Moreno Valley-Riverside: ";
   else if (k == MORENO_VALLEY && i == PERRIS)
-    return " Moreno Valley: Perris: ";
+    return " Moreno Valley-Perris: ";
   else if (k == MORENO_VALLEY && i == HEMET)
-    return " Moreno Valley: Hemet: ";  
+    return " Moreno Valley-Hemet: ";  
 
 
  // Starting Point = Perris
   if (k == PERRIS && i == PERRIS)
-    return " Perris: Perris: ";
+    return " Perris-Perris: ";
   else if (k == PERRIS && i == MORENO_VALLEY)
-    return " Perris: Moreno Valley: ";
+    return " Perris-Moreno Valley: ";
   else if (k == PERRIS && i == RIVERSIDE)
-    return " Perris: Riverside: ";
+    return " Perris-Riverside: ";
   else if (k == PERRIS && i == HEMET)
-    return " Perris: Hemet: ";  
+    return " Perris-Hemet: ";  
 
 
  // Starting Point = Hemet
   if (k == HEMET && i == HEMET)
-    return " Hemet: Hemet: ";
+    return " Hemet-Hemet: ";
   else if (k == HEMET && i == MORENO_VALLEY)
-    return " Hemet: Moreno Valley: ";
+    return " Hemet-Moreno Valley: ";
   else if (k == HEMET && i == PERRIS)
-    return " Hemet: Perris: ";
+    return " Hemet-Perris: ";
   else if (k == HEMET && i == RIVERSIDE)
-    return " Hemet: Riverside: ";    
+    return " Hemet-Riverside: ";    
 
   return " ";          
 }
@@ -317,6 +336,8 @@ int travelSim(int graph[][V], int source)
     // The size of the loop should be the value of (macro 'V' - 1); in this case, 3.
     // The value of i should be in a sequence of 0 - 1 - 2 during the looping process.
 
+    cout << "Route " << routeNum << " 🛑: ";
+
     for (int i = 0; i < cities.size(); i++) 
     { 
       // We can use the K-value and cities[i] value in order to find the path weight:
@@ -331,7 +352,7 @@ int travelSim(int graph[][V], int source)
       current_pathweight += graph[k][cities[i]]; 
 
       // Print Path Name to the Terminal:
-       cout << getPathName(k,cities[i]); 
+     cout << getPathName(k,cities[i]);
 
       // The value of 'K' is now the value of the next element of the vertex cities:
       // i.e First  iteration:  cities[0] = 1, so k = 1.
@@ -343,7 +364,8 @@ int travelSim(int graph[][V], int source)
 
     // Sum up the last remaining = graph[3][0] = 33; current_weight = 74 + 33 = 107 <-- Should be our weight.
     current_pathweight += graph[k][source]; 
-     cout << getPathName(k, source); 
+    cout << getPathName(k, source); 
+    cout << current_pathweight << " miles";
 
 
     // Example Graph:
