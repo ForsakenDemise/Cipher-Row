@@ -3,19 +3,18 @@
 #include <string>
 #include <vector>
 #include <bits/stdc++.h>
-#define V 4
+#define V 4                   // The max value of the city.
 
 using namespace std;
 
 // Function Prototypes
-int getCity(string s);           // Return integer value of the city using String param var.
-string getPathName(int k, int i);    // Return a String pathname after providing 2 int values.
-int tsp(int graph[][V], int s);  // Traveling Saleman Algorithm for Option 1.
+int getCity(string s);             // Return integer value of the city using String param var.
+int travelSim(int graph[][V], int s);      // Traveling Saleman Algorithm for Option 1.
 void calVariations();            // Determine the variations of the trip to the noted cities 
 void calDistance();              // Calculate the Distance of two cities.
 void calShortest();              // Determine the Shortest path for the saleman to travel.
 void calLowest();                // Calculate the Lowest Cost Trip
-
+string getPathName(int k, int i);    // Return a String pathname after providing 2 int values.
 
 // Cities: Each city is represented by a constant integer value.
 const int RIVERSIDE     = 0;
@@ -37,8 +36,6 @@ int main()
 {
   bool exitProgram = false;   // Determine the state of the program.
   int userInput;              // Store user input for the menu selection.
-
-  tsp(graph, 0);
 
   // Menu Selection: Each selection is represented by an integer value.
   const int SELECT_VARIATIONS = 1;
@@ -138,8 +135,6 @@ int getCity(string userString)
  * that the traveling saleman must take to market the solar products. */
 void calVariations()
 {
-  vector<int> travelList = {RIVERSIDE, PERRIS, HEMET, MORENO_VALLEY, RIVERSIDE};
-
   cout << endl << endl << endl;
   cout << "╔════════════════════════════════════════════════╗" << endl;
   cout << "║    1. Determine The Variations of The Trip     ║" << endl;
@@ -174,7 +169,7 @@ void calVariations()
   cout << "╔════════════════════════════════════════════════╗" << endl;
   cout << "║    Calculating For The Most Shortest Route     ║" << endl;
   cout << "╚════════════════════════════════════════════════╝" << endl << endl;
-  cout << tsp(graph, RIVERSIDE);
+  cout << travelSim(graph, RIVERSIDE);
   cout << " miles." << endl;
 
 } // end of calVariations()
@@ -244,46 +239,48 @@ string getPathName(int k, int i)
 {
   // Starting Point = Riverside
   if (k == RIVERSIDE && i == RIVERSIDE)
-    return "Riverside -> Riverside";
+    return " Riverside: Riverside: ";
   else if (k == RIVERSIDE && i == MORENO_VALLEY)
-    return "Riverside -> Moreno Valley";
+    return "Riverside: Moreno Valley: ";
   else if (k == RIVERSIDE && i == PERRIS)
-    return "Riverside -> Perris";
+    return " Riverside: Perris: ";
   else if (k == RIVERSIDE && i == HEMET)
-    return "Riverside -> Hemet";    
+    return " Riverside: Hemet: ";    
 
 
  // Starting Point = Moreno Valley
   if (k == MORENO_VALLEY && i == MORENO_VALLEY)
-    return "Moreno Valley -> Moreno Valley";
+    return " Moreno Valley: Moreno Valley: ";
   else if (k == MORENO_VALLEY && i == RIVERSIDE)
-    return "Moreno Valley -> Riverside";
+    return " Moreno Valley: Riverside: ";
   else if (k == MORENO_VALLEY && i == PERRIS)
-    return "Moreno Valley -> Perris";
+    return " Moreno Valley: Perris: ";
   else if (k == MORENO_VALLEY && i == HEMET)
-    return "Moreno Valley -> Hemet";  
+    return " Moreno Valley: Hemet: ";  
 
 
  // Starting Point = Perris
   if (k == PERRIS && i == PERRIS)
-    return "Perris -> Perris";
+    return " Perris: Perris: ";
   else if (k == PERRIS && i == MORENO_VALLEY)
-    return "Perris -> Moreno Valley";
+    return " Perris: Moreno Valley: ";
   else if (k == PERRIS && i == RIVERSIDE)
-    return "Perris -> Riverside";
+    return " Perris: Riverside: ";
   else if (k == PERRIS && i == HEMET)
-    return "Perris -> Hemet";  
+    return " Perris: Hemet: ";  
 
 
  // Starting Point = Hemet
   if (k == HEMET && i == HEMET)
-    return "Hemet -> Hemet";
+    return " Hemet: Hemet: ";
   else if (k == HEMET && i == MORENO_VALLEY)
-    return "Hemet -> Moreno Valley";
+    return " Hemet: Moreno Valley: ";
   else if (k == HEMET && i == PERRIS)
-    return "Hemet -> Perris";
+    return " Hemet: Perris: ";
   else if (k == HEMET && i == RIVERSIDE)
-    return "Hemet -> Riverside";              
+    return " Hemet: Riverside: ";    
+
+  return " ";          
 }
 
 
@@ -292,11 +289,12 @@ string getPathName(int k, int i)
 /* The function requires a multidemnsional array of graph and a starting point(source) integer... 
 /* and will then return the (shortest path) as the solution.
  */
-int tsp(int graph[][V], int source) 
+int travelSim(int graph[][V], int source) 
 {
 
   vector<int> cities;      // This vector will store all vertices apart from the source vertex.
   int min_path = INT_MAX;  // Store minimum weight Hamiltonian Cycle. 
+  int routeNum = 1;
 
 
   // Step 1: Add all the non-source variable value to the vertex structure.
@@ -306,7 +304,7 @@ int tsp(int graph[][V], int source)
   for (int i = 0; i < V; i++) 
   {
       if (i != source) 
-       cities.push_back(i);  
+      cities.push_back(i);  
   }
 
 
@@ -318,6 +316,7 @@ int tsp(int graph[][V], int source)
 
     // The size of the loop should be the value of (macro 'V' - 1); in this case, 3.
     // The value of i should be in a sequence of 0 - 1 - 2 during the looping process.
+
     for (int i = 0; i < cities.size(); i++) 
     { 
       // We can use the K-value and cities[i] value in order to find the path weight:
@@ -331,6 +330,9 @@ int tsp(int graph[][V], int source)
       // i.e Third  Iteration:  graph[2][3] = 32; current_pathweight = 74;
       current_pathweight += graph[k][cities[i]]; 
 
+      // Print Path Name to the Terminal:
+       cout << getPathName(k,cities[i]); 
+
       // The value of 'K' is now the value of the next element of the vertex cities:
       // i.e First  iteration:  cities[0] = 1, so k = 1.
       // i.e Second iteration:  cities[1] = 2, so k = 2.
@@ -341,6 +343,7 @@ int tsp(int graph[][V], int source)
 
     // Sum up the last remaining = graph[3][0] = 33; current_weight = 74 + 33 = 107 <-- Should be our weight.
     current_pathweight += graph[k][source]; 
+     cout << getPathName(k, source); 
 
 
     // Example Graph:
@@ -358,10 +361,13 @@ int tsp(int graph[][V], int source)
     // Whichever value is returned by the min function will be the lowest min_path of the white-loop.
     min_path = min(min_path, current_pathweight); 
         
+    cout << endl;
+    routeNum++;
 
   // This do-while loop is operated by the std::next_permutation, 
   // using the beginning iterator and the last iterator of the vertex as the length.      
   } while (next_permutation(cities.begin(), cities.end())); 
 
   return min_path; 
-}
+
+} // close TSP function
